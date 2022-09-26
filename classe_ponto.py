@@ -25,8 +25,7 @@ class Circunferencia:
 
     def imprimir(self):
         print(f'==Circunferencia==')
-        print(f'''Centro: 
-        {self.centro.imprimir()}''')
+        print(f'''Centro: {self.centro.imprimir()}''')
         print(f'Raio: {self.raio}')
         print(f'Cor da linha: {self.cor_linha}')
         print(f'Cor do preenchimento: {self.cor_preenchimento}')

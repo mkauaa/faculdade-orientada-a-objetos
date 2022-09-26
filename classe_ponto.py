@@ -8,7 +8,7 @@ class Ponto:
         self.cor = novacor
 
     def imprimir(self):
-        print(f'Ponto {self.cor}: ({self.x}, {self.y})')
+        print(f'Ponto {self.cor} ({self.x}, {self.y})')
 
 class Circunferencia:
     def __init__(self, ponto, raio, cor_linha, cor_preenchimento):
@@ -24,9 +24,9 @@ class Circunferencia:
         return 2 * 3 * self.raio
 
     def imprimir(self):
-        print(f'==Circunferencia==')
-        print(f'''Centro: {self.centro.imprimir()}''')
-        print(f'Raio: {self.raio}')
+        print(f'\n==Circunferencia==\n')
+        print(f'Centro:', end=' ')
+        self.centro.imprimir()
+        print(f'\nRaio: {self.raio}\n')
         print(f'Cor da linha: {self.cor_linha}')
-        print(f'Cor do preenchimento: {self.cor_preenchimento}')
-
+        print(f'\nCor do preenchimento: {self.cor_preenchimento}\n')

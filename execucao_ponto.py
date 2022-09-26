@@ -1,4 +1,4 @@
-from c_ponto import Circunferencia, Ponto
+from classe_ponto import Circunferencia, Ponto
 
 keke = Ponto(2, 3, 'Verde')
 

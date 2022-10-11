@@ -9,7 +9,7 @@ class Animal:
 
     def dados(self):
         print(f'Nome: {self.nome}\nComprimento: {self.comprimento} cm\nNum de Patas: {self.patas}')
-        print(f'Cor: {self.cor}\nAmbiente: {self.ambiente}\nVelocidade: {self.velocidade} km/h\n')
+        print(f'Cor: {self.cor}\nAmbiente: {self.ambiente}\nVelocidade: {self.velocidade} km/h')
 
 class Mamifero(Animal):
     def __init__(self, nome, comprimento, patas, cor, ambiente, velocidade, alimento):

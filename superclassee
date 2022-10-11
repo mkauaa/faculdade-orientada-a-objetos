@@ -1,9 +1,0 @@
-from a import Animal, Mamifero
-
-X = Animal('X', 120, 4, 'Preto', 'Selva', 25)
-
-X.dados()
-
-Y = Mamifero('X', 120, 4, 'Preto', 'Selva', 25, 'Banana')
-
-Y.dados()

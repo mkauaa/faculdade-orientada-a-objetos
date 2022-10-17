@@ -7,14 +7,16 @@ mary = Contato('Mary', 'email@email.com', tel1)
 
 mary.alterar_email('marshel@email.com')
 
-mary.add_telefone(tel2)
+#mary.add_telefone(tel2)
 
 mary.altera_nome('Shelley')
 
 minha_agenda = Agenda(mary)
 
-#minha_agenda.pesquisar_nome('Shelley')
+print(minha_agenda.pesquisar_nome('Shelley'))
 
 #minha_agenda.alterar_contato('Shelley', 'Maria', 'email@email.com', tel1)
 
-mary.imprimir
+mary.imprimir()
+
+print(tel1)

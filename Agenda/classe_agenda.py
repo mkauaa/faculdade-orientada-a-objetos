@@ -7,8 +7,8 @@ class Telefone():
     def alterar_numero(self, numero):
         self.numero = numero
     
-    def str(self) -> str:
-        return "(" + self.ddd + ") " + self.numero
+    def str(self):
+        return  f'({self.ddd}) {self.numero}'
     
 class Contato():
     def __init__(self, nome, e_mail, telefone:Telefone):
@@ -29,17 +29,10 @@ class Contato():
         self.nome = nome
     
     def imprimir(self):
-        wasd = "Contato: {}\nEmail: {}\nTelefone(s): ".format(self.nome, self.email)
+        dados = f'Contato: {self.nome} \nEmail: {self.email} \nTelefone(s): '
         for tel in self.telefone:
-            wasd += str(tel) + " "
-        print(wasd)
-    
-    # A função abaixo tbm permite imprimir na tela fazendo print(contato)
-    def str(self) -> str:
-        wasd = "Contato: {}\nEmail: {}\nTelefone: ".format(self.nome, self.email)
-        for tel in self.telefone:
-            wasd += str(tel) + " "
-        return wasd
+            dados += str(tel) + " "
+        print(dados)
 
 class Agenda():
     def __init__(self, contatos:Contato):
@@ -60,11 +53,3 @@ class Agenda():
             self.contatos.append(contato)
         else:
             print("Agenda cheia!")
-
-tel1 = Telefone("71", "12345")
-tel2 = Telefone("45", "78129")
-qwerty = Contato("qwerty", "qwerty@gmail.com", tel1)
-qwerty.add_telefone(tel2)
-minha_agenda = Agenda(qwerty)
-
-print(minha_agenda.pesquisar_nome("qwerty"))

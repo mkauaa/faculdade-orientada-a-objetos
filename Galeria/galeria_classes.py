@@ -110,9 +110,9 @@ class Galeria():
         self._pinturas.append(obra)
 
     @property
-    def pinturas(self):
-        return self._pinturas
-    @pinturas.setter
+    def esculturas(self):
+        return self._esculturas
+    @esculturas.setter
     def esculturas(self, obra: Escultura):
         self._esculturas.append(obra)
 

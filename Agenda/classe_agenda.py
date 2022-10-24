@@ -7,7 +7,7 @@ class Telefone():
     def alterar_numero(self, numero):
         self.numero = numero
     
-    def str(self):
+    def __str__(self):
         return  f'({self.ddd}) {self.numero}'
     
 class Contato():

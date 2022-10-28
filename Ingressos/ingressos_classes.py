@@ -16,7 +16,7 @@ class Ingresso():
 
     # ta imprimindo object at 0x0blablabla
     def __str__(self):
-        return f'Código: {self.codigo} \n Valor: {self.valor} \n Status: {self.status}'
+        return f'Código: {self.codigo} \nValor: {self.valor} \nStatus: {self.status}'
 
 class Camarote(Ingresso):
     def __init__(self, valor, adicional):
@@ -33,7 +33,7 @@ class Camarote(Ingresso):
         return self._total
 
     def __str__(self):
-        return f'Código: {self.codigo} \n Valor: {self.total} \n Status: {self.status}'
+        return f'Código: {self.codigo} \nValor: {self.total} \nStatus: {self.status}'
 
 class Show():
     def __init__(self, artista, data, local):
@@ -87,5 +87,33 @@ class Show():
         elif self.tipo == 1:
             self.adicional = int(input('Informe o valor adicional: R$'))
             for i in range(self.quantidade):
-                i = Ingresso(self.valor, self.adicional)
+                i = Camarote(self.valor, self.adicional)
                 self.camarotes.append(i)
+
+    def venderIngressos(self, quantidade, tipo = 0):
+        self.quantidade = quantidade
+        self.tipo = tipo
+        self.soma = 0
+        cont = 0
+
+        if self.tipo == 0:
+            for i in self.pistas:
+                while cont < self.quantidade:
+                    i.status == True
+                    self.soma += i.valor
+                    cont += 1
+
+        if self.tipo ==1:
+            for i in self.camarotes:
+                while cont < self.quantidade:
+                    i.status == True
+                    self.soma += i.valor
+                    cont += 1
+
+        return self.soma
+
+    def imprimir(self):
+        for i in self.pistas:
+            print(i)
+
+        

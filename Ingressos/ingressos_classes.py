@@ -1,32 +1,52 @@
+from datetime import date
+
 class Ingresso():
-    codigo = 0
+    cod = 0
     def __init__(self, valor):
-        self._codigo = __class__.codigo + 1
-        __class__.codigo += 1
-        self._valor = valor
-        self._status = False
+        self._codigo = __class__.gerarCodigo()
+        self._valor = float(valor)
+        self._status = None
+
+    @property
+    def codigo(self):
+        return self._codigo
 
     @property
     def valor(self):
         return self._valor
+    @valor.setter
+    def valor(self, valor):
+        self._valor = valor
 
     @property
     def status(self):
         return self._status
+    @status.setter
+    def status(self, status):
+        self._status = status
 
     # ta imprimindo object at 0x0blablabla
     def __str__(self):
         return f'Código: {self.codigo} \nValor: {self.valor} \nStatus: {self.status}'
 
+    @staticmethod
+    def gerarCodigo():
+        ano = str(date.today())
+        Ingresso.cod = Ingresso.cod + 1
+        return ano + str(Ingresso.cod)
+
 class Camarote(Ingresso):
     def __init__(self, valor, adicional):
         super().__init__(valor)
-        self._adicional = adicional
+        self._adicional = float(adicional)
         self._total = self.valor + self.adicional
 
     @property
     def adicional(self):
         return self._adicional
+    @adicional.setter
+    def adicional(self, adicional):
+        self._adicional = adicional
 
     @property
     def total(self):
@@ -59,14 +79,14 @@ class Show():
     def pistas(self):
         return self._pistas
     @pistas.setter
-    def pistas(self, ingresso: Ingresso):
+    def pistas(self, ingresso):
         self._pistas.append(ingresso)
 
     @property
     def camarotes(self):
         return self._camarotes
     @camarotes.setter
-    def pistas(self, ingresso: Ingresso):
+    def camarotes(self, ingresso):
         self._camarotes.append(ingresso)
 
     def __str__(self):
@@ -75,45 +95,61 @@ class Show():
     # a partir daqui tava nas maos de deus
 
     def gerarIngressos(self, quantidade, valor, tipo = 0):
-        self.quantidade = quantidade
-        self.valor = valor
-        self.tipo = tipo
+        if tipo == 0:
+            for i in range(quantidade):
+                ingresso = Ingresso(valor)
+                self.pistas = ingresso
 
-        if self.tipo == 0:
-            for i in range(self.quantidade):
-                i = Ingresso(self.valor)
-                self.pistas.append(i)
+        elif tipo == 1:
+            adicional = int(input('Informe o valor adicional: R$'))
+            for i in range(quantidade):
+                ingresso = Camarote(valor, adicional)
+                self.camarotes = ingresso
 
-        elif self.tipo == 1:
-            self.adicional = int(input('Informe o valor adicional: R$'))
-            for i in range(self.quantidade):
-                i = Camarote(self.valor, self.adicional)
-                self.camarotes.append(i)
-
-    def venderIngressos(self, quantidade, tipo = 0):
-        self.quantidade = quantidade
-        self.tipo = tipo
-        self.soma = 0
+    def venderIngresso(self, quantidade, tipo = 0):
+        soma = 0
         cont = 0
 
-        if self.tipo == 0:
+        if tipo == 0:
             for i in self.pistas:
-                while cont < self.quantidade:
-                    i.status == True
-                    self.soma += i.valor
+                if i.status == None and cont != quantidade:
+                    i.status == 'Vendido'
+                    soma += i.valor
                     cont += 1
 
-        if self.tipo ==1:
+        if tipo ==1:
             for i in self.camarotes:
-                while cont < self.quantidade:
-                    i.status == True
-                    self.soma += i.valor
+                if i.status == None and cont != quantidade:
+                    i.status == 'Vendido'
+                    soma += i.valor + i.adicional
                     cont += 1
 
-        return self.soma
+        return soma
 
-    def imprimir(self):
+    def relatorioVendas(self):
+        print(self)
+        total = 0
+        
         for i in self.pistas:
-            print(i)
+            if i.status == 'Vendido':
+                print(i)
+                total += i.valor
+        
+        for i in self.camarotes:
+            if i.status == 'Vendido':
+                print(i)
+                total += i.valor + i.adicional
+        
+        print('-' * 20)
 
+        print('= Ingressos VIP ')
+
+        for i in self.camarotes:
+            if i.status == 'Vendido':
+                print(i)
+
+        print('-' * 20)
+        
+        print(f'Total de vendas = R${total:.2f}')
+            
         

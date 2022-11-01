@@ -25,7 +25,6 @@ class Ingresso():
     def status(self, status):
         self._status = status
 
-    # ta imprimindo object at 0x0blablabla
     def __str__(self):
         return f'Código: {self.codigo} \nValor: {self.valor} \nStatus: {self.status}'
 
@@ -39,7 +38,6 @@ class Camarote(Ingresso):
     def __init__(self, valor, adicional):
         super().__init__(valor)
         self._adicional = float(adicional)
-        self._total = self.valor + self.adicional
 
     @property
     def adicional(self):
@@ -48,12 +46,8 @@ class Camarote(Ingresso):
     def adicional(self, adicional):
         self._adicional = adicional
 
-    @property
-    def total(self):
-        return self._total
-
     def __str__(self):
-        return f'Código: {self.codigo} \nValor: {self.total} \nStatus: {self.status}'
+        return f'Código: {self.codigo} \nValor: {self.valor + self.adicional} \nStatus: {self.status}'
 
 class Show():
     def __init__(self, artista, data, local):
@@ -90,9 +84,7 @@ class Show():
         self._camarotes.append(ingresso)
 
     def __str__(self):
-        return f'Artista: {self.artista} \n Data: {self.data} \n Local: {self.local}'
-
-    # a partir daqui tava nas maos de deus
+        return f'\n== SHOW => \nArtista: {self.artista} \nData: {self.data} \nLocal: {self.local}\n'
 
     def gerarIngressos(self, quantidade, valor, tipo = 0):
         if tipo == 0:
@@ -113,15 +105,15 @@ class Show():
         if tipo == 0:
             for i in self.pistas:
                 if i.status == None and cont != quantidade:
-                    i.status == 'Vendido'
+                    i.status = 'Vendido'
                     soma += i.valor
                     cont += 1
 
         if tipo ==1:
             for i in self.camarotes:
                 if i.status == None and cont != quantidade:
-                    i.status == 'Vendido'
-                    soma += i.valor + i.adicional
+                    i.status = 'Vendido'
+                    soma += (i.valor + i.adicional)
                     cont += 1
 
         return soma
@@ -130,26 +122,20 @@ class Show():
         print(self)
         total = 0
         
+        print('= Pista =\n')
+
         for i in self.pistas:
             if i.status == 'Vendido':
-                print(i)
+                print(i, '\n')
                 total += i.valor
-        
+
+        print('= Camarote =\n')
+
         for i in self.camarotes:
             if i.status == 'Vendido':
-                print(i)
+                print(i, '\n')
                 total += i.valor + i.adicional
-        
-        print('-' * 20)
 
-        print('= Ingressos VIP ')
-
-        for i in self.camarotes:
-            if i.status == 'Vendido':
-                print(i)
-
-        print('-' * 20)
-        
-        print(f'Total de vendas = R${total:.2f}')
+        print(f'Total de vendas = R${total:.2f}\n')
             
         

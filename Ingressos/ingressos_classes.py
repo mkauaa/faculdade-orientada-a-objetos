@@ -1,3 +1,5 @@
+from datetime import date
+
 class Ingresso():
     cod = 0
     def __init__(self, valor):

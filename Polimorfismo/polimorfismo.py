@@ -2,6 +2,8 @@ class Quadrilatero:
     def __init__(self, base, altura=None):
         self._base = base
         self._altura = altura
+        if self.altura == None:
+            self.altura = self.base
 
     @property
     def base(self):
@@ -18,18 +20,10 @@ class Quadrilatero:
         self._altura = altura
 
     def calcula_area(self):
-        if self.altura == None:
-            self.altura = self.base
-
         return self.base * self.altura
 
     def calcula_perimetro(self):
-        if self.altura == None:
-            self.altura = self.base
-            return self.altura * 4
-
-        else:
-            return 2 * (self.base + self.altura)
+        return 2 * (self.base + self.altura)
 
     def __str__(self):
         return f'Base: {self.base} / Altura: {self.altura}'
